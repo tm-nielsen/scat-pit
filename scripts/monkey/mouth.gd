@@ -1,4 +1,5 @@
 @tool
+class_name Mouth
 extends Ellipsis
 
 enum StereoSide { LEFT, RIGHT }

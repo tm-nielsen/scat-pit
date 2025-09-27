@@ -9,6 +9,10 @@ extends Area2D
 @export var elastic_position: ElasticVector2
 @export var parent_velocity_effect: float = 0.05
 
+@export_subgroup("scaling references")
+@export var collider: CollisionShape2D
+@export var circle: Circle
+
 @onready var parent: Monkey = get_parent()
 @onready var base_position: Vector2 = position
 
