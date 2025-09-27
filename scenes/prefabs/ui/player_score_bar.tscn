@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd6u2eukmtsic"]
+
+[ext_resource type="Script" uid="uid://bkih4xpesa2tn" path="res://scripts/ui/player_score_meter.gd" id="1_vjhag"]
+
+[node name="PlayerScoreBar" type="MarginContainer" node_paths=PackedStringArray("fill")]
+size_flags_horizontal = 3
+script = ExtResource("1_vjhag")
+fill = NodePath("Fill")
+
+[node name="Fill" type="ColorRect" parent="."]
+layout_mode = 2

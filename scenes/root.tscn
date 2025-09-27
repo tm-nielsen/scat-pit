@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2c7qvsff3owx"]
 
 [ext_resource type="PackedScene" uid="uid://ctmomsylv2o63" path="res://scenes/game.tscn" id="1_j5px3"]
-[ext_resource type="Script" uid="uid://bkih4xpesa2tn" path="res://scripts/ui/player_score_meter.gd" id="1_lrqlo"]
+[ext_resource type="PackedScene" uid="uid://cd6u2eukmtsic" path="res://scenes/prefabs/ui/player_score_bar.tscn" id="1_lrqlo"]
 [ext_resource type="Shader" uid="uid://cnriib1uivvjr" path="res://visuals/shaders/lines.gdshader" id="1_twpsu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lrqlo"]
@@ -49,12 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="P1Bar" type="MarginContainer" parent="HBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("1_lrqlo")
-
-[node name="ColorRect" type="ColorRect" parent="HBox/P1Bar"]
+[node name="Player1ScoreBar" parent="HBox" instance=ExtResource("1_lrqlo")]
 layout_mode = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="HBox"]
@@ -96,11 +91,6 @@ shape = SubResource("WorldBoundaryShape2D_jh1ax")
 
 [node name="Game" parent="HBox/SubViewportContainer/SubViewport" instance=ExtResource("1_j5px3")]
 
-[node name="P2Bar" type="MarginContainer" parent="HBox"]
+[node name="Player2ScoreBar" parent="HBox" instance=ExtResource("1_lrqlo")]
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("1_lrqlo")
 player_index = 1
-
-[node name="ColorRect" type="ColorRect" parent="HBox/P2Bar"]
-layout_mode = 2
