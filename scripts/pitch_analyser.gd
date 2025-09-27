@@ -5,11 +5,11 @@ extends Node
 
 @export_subgroup("parameters")
 @export_subgroup("parameters/low range", "low_range")
-@export var low_range_normalizing_factor: float = 50
+@export var low_range_normalizing_factor: float = 20
 @export var low_range_minimum_frequency: float = 100
 @export var low_range_maximum_frequency: float = 300
 @export_subgroup("parameters/high range", "high_range")
-@export var high_range_normalizing_factor: float = 100
+@export var high_range_normalizing_factor: float = 25
 @export var high_range_minimum_frequency: float = 300
 @export var high_range_maximum_frequency: float = 600
 

@@ -20,3 +20,13 @@ stroke_width = 1.0
 metadata/_custom_type_script = "uid://ds0kr25t27yso"
 
 [node name="Monkey" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(-30, 0)
+
+[node name="Mouth" parent="Monkey" index="5"]
+side = 0
+
+[node name="Monkey2" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(30, 0)
+
+[editable path="Monkey"]
+[editable path="Monkey2"]
