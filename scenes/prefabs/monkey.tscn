@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://6lxf60xqjeix"]
+[gd_scene load_steps=13 format=3 uid="uid://6lxf60xqjeix"]
 
 [ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/shapes/circle.gd" id="1_dh2fa"]
 [ext_resource type="Script" uid="uid://3dsk8rwcsr1n" path="res://scripts/monkey/monkey.gd" id="1_ik0ct"]
 [ext_resource type="Script" uid="uid://cfo3gjpryiwqk" path="res://scripts/shapes/arc.gd" id="2_ik0ct"]
 [ext_resource type="Script" uid="uid://c0ix0otioog5v" path="res://scripts/monkey/mouth.gd" id="3_n1hhs"]
+[ext_resource type="Script" uid="uid://cj5k202kxuclg" path="res://scripts/monkey/eye.gd" id="6_kmmd7"]
+[ext_resource type="Script" uid="uid://bf55jbuq0yl6x" path="res://scripts/utilities/elastic_vector2.gd" id="7_lyg5m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ik0ct"]
 bounce = 1.0
@@ -13,12 +15,26 @@ radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gee14"]
 
-[node name="Monkey" type="RigidBody2D"]
+[sub_resource type="Resource" id="Resource_plh5m"]
+resource_local_to_scene = true
+script = ExtResource("7_lyg5m")
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqmxo"]
+radius = 5.0
+
+[sub_resource type="Resource" id="Resource_clp6f"]
+resource_local_to_scene = true
+script = ExtResource("7_lyg5m")
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
+
+[node name="Monkey" type="RigidBody2D" node_paths=PackedStringArray("eyes")]
 physics_material_override = SubResource("PhysicsMaterial_ik0ct")
 gravity_scale = 0.0
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("1_ik0ct")
+eyes = [NodePath("LeftEye"), NodePath("RightEye")]
 
 [node name="BodCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u5sy4")
@@ -55,22 +71,6 @@ end_angle = 5.318
 radius = 4.0
 stroke_width = 1.0
 
-[node name="RightEye" type="Node2D" parent="."]
-position = Vector2(12, -10)
-script = ExtResource("1_dh2fa")
-radius = 5.0
-fill_colour = Color(0, 0, 0, 1)
-stroke_width = 0.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="LeftEye" type="Node2D" parent="."]
-position = Vector2(-12, -10)
-script = ExtResource("1_dh2fa")
-radius = 5.0
-fill_colour = Color(0, 0, 0, 1)
-stroke_width = 0.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
 [node name="Mouth" type="Node2D" parent="."]
 position = Vector2(0, -25)
 script = ExtResource("3_n1hhs")
@@ -79,3 +79,33 @@ ratio = 0.5
 radius = 4.0
 stroke_width = 1.0
 metadata/_custom_type_script = "uid://n2kml8cqlk66"
+
+[node name="LeftEye" type="Area2D" parent="."]
+position = Vector2(-12, -10)
+script = ExtResource("6_kmmd7")
+elastic_position = SubResource("Resource_plh5m")
+
+[node name="Collider" type="CollisionShape2D" parent="LeftEye"]
+shape = SubResource("CircleShape2D_qqmxo")
+
+[node name="Circle" type="Node2D" parent="LeftEye"]
+script = ExtResource("1_dh2fa")
+radius = 5.0
+fill_colour = Color(0, 0, 0, 1)
+stroke_width = 0.0
+metadata/_custom_type_script = "uid://ds0kr25t27yso"
+
+[node name="RightEye" type="Area2D" parent="."]
+position = Vector2(12, -10)
+script = ExtResource("6_kmmd7")
+elastic_position = SubResource("Resource_clp6f")
+
+[node name="Collider" type="CollisionShape2D" parent="RightEye"]
+shape = SubResource("CircleShape2D_qqmxo")
+
+[node name="Circle" type="Node2D" parent="RightEye"]
+script = ExtResource("1_dh2fa")
+radius = 5.0
+fill_colour = Color(0, 0, 0, 1)
+stroke_width = 0.0
+metadata/_custom_type_script = "uid://ds0kr25t27yso"

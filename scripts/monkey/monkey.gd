@@ -7,6 +7,16 @@ extends RigidBody2D
 @export var move_force: float = 100
 @export var turn_force: float = 100
 
+@export var eyes: Array[Eye]
+var next_eye_index: int = 0
+
+
+func _process(_delta):
+    if is_numbered_action_just_pressed("jab"):
+        var next_eye = eyes[next_eye_index]
+        if !next_eye.is_recovering:
+            next_eye.trigger_jab()
+            next_eye_index = (next_eye_index + 1) % eyes.size()
 
 func _physics_process(_delta):
     var input_direction = get_numbered_input_direction()
@@ -16,7 +26,6 @@ func _physics_process(_delta):
         face_toward.position - position
     )
     apply_torque(-a * turn_force)
-
 
 
 
