@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
     )
     ratio = lerp(
         high_range_ratio, low_range_ratio,
-        low_range_magnitude / total_magnitude
+        select_stereo_channel(PitchAnalyser.low_range_share)
     )
     radius = total_magnitude * normal_radius / ratio
 

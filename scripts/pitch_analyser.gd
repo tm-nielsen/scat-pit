@@ -9,7 +9,7 @@ extends Node
 @export var low_range_minimum_frequency: float = 100
 @export var low_range_maximum_frequency: float = 300
 @export_subgroup("parameters/high range", "high_range")
-@export var high_range_normalizing_factor: float = 25
+@export var high_range_normalizing_factor: float = 40
 @export var high_range_minimum_frequency: float = 300
 @export var high_range_maximum_frequency: float = 600
 
@@ -17,6 +17,8 @@ var spectrum_analyser: AudioEffectSpectrumAnalyzerInstance
 
 var low_range_magnitude: Vector2
 var high_range_magnitude: Vector2
+var average_magnitude: float
+var low_range_share: Vector2
 
 
 func _ready() -> void:
@@ -43,6 +45,13 @@ func _process(_delta: float) -> void:
 
     low_range_magnitude *= low_range_normalizing_factor
     high_range_magnitude *= high_range_normalizing_factor
+
+    var total_magnitude := low_range_magnitude + high_range_magnitude
+    if total_magnitude.x != 0 && total_magnitude.y != 0:
+        low_range_share = low_range_magnitude / total_magnitude
+    else:
+        low_range_share = Vector2(0.5, 0.5)
+    average_magnitude = (total_magnitude.x + total_magnitude.y) / 2
 
 
 func get_range(
