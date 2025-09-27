@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2c7qvsff3owx"]
+[gd_scene load_steps=4 format=3 uid="uid://b2c7qvsff3owx"]
 
 [ext_resource type="PackedScene" uid="uid://ctmomsylv2o63" path="res://scenes/game.tscn" id="1_j5px3"]
+[ext_resource type="Shader" uid="uid://cnriib1uivvjr" path="res://visuals/shaders/lines.gdshader" id="1_twpsu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrqlo"]
+shader = ExtResource("1_twpsu")
+shader_parameter/amount = 0.0
+shader_parameter/sample_width = 64
+shader_parameter/line_count = 64
+shader_parameter/colour_a = Color(1, 1, 0, 1)
+shader_parameter/colour_b = Color(0, 0, 0, 1)
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -11,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_lrqlo")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
