@@ -29,5 +29,13 @@ func _process(_delta: float) -> void:
     radius = total_magnitude * normal_radius / ratio
 
 
+func set_side_from_player_number(player_number: int):
+    side = (
+        StereoSide.LEFT
+        if player_number < 2 else
+        StereoSide.RIGHT
+    )
+
+
 func select_stereo_channel(value: Vector2) -> float:
     return value.x if side == StereoSide.LEFT else value.y

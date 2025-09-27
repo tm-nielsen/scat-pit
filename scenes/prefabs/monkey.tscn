@@ -28,14 +28,13 @@ resource_local_to_scene = true
 script = ExtResource("7_lyg5m")
 metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
 
-[node name="Monkey" type="RigidBody2D" node_paths=PackedStringArray("scaler", "eyes")]
+[node name="Monkey" type="RigidBody2D" node_paths=PackedStringArray("scaler")]
 physics_material_override = SubResource("PhysicsMaterial_ik0ct")
 gravity_scale = 0.0
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("1_ik0ct")
 scaler = NodePath("Scaler")
-eyes = [NodePath("LeftEye"), NodePath("RightEye")]
 default_size = 0.8
 
 [node name="BodCollider" type="CollisionShape2D" parent="."]
@@ -83,7 +82,6 @@ stroke_width = 1.0
 [node name="Mouth" type="Node2D" parent="Scaler"]
 position = Vector2(0, -25)
 script = ExtResource("3_n1hhs")
-side = 1
 ratio = 0.5
 radius = 4.0
 stroke_width = 1.0

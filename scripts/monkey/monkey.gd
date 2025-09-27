@@ -1,6 +1,9 @@
 class_name Monkey
 extends RigidBody2D
 
+const PLAYER_COLOURS: Array[Color] = [
+    Color8(255, 80, 80), Color8(80, 80, 255)
+]
 
 @export_range(1, 2) var player_number: int = 1
 
@@ -11,8 +14,6 @@ extends RigidBody2D
 @export_subgroup("references")
 @export var face_toward: Node2D
 @export var scaler: MonkeyScaler
-@export var eyes: Array[Eye]
-var next_eye_index: int = 0
 
 @export_subgroup("sizes")
 @export var default_size: float = 1
@@ -22,13 +23,19 @@ var next_eye_index: int = 0
 
 @onready var size: float
 
+@onready var mouth: Mouth = scaler.mouth
+@onready var eyes: Array[Eye] = scaler.eyes
+var next_eye_index: int = 0
+
 
 func _ready():
-    rotation = _get_angle_to_target()
-    set_size(default_size)
     body_entered.connect(
         GlobalSignalBus.notify_monkey_bounced.bind(self)
     )
+    modulate = PLAYER_COLOURS[player_number - 1]
+    mouth.set_side_from_player_number(player_number)
+    rotation = _get_angle_to_target()
+    set_size(default_size)
 
 func _process(_delta):
     if is_numbered_action_just_pressed("jab"):
