@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqkpnulvot35"]
+
+[ext_resource type="Script" uid="uid://buxrgyulb8lhm" path="res://scripts/pitch_analyser.gd" id="1_kuvwg"]
+
+[node name="PitchAnalyser" type="Node"]
+script = ExtResource("1_kuvwg")
+spectrum_analyser_effect_index = 2
