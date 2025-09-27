@@ -82,6 +82,7 @@ metadata/_custom_type_script = "uid://n2kml8cqlk66"
 
 [node name="LeftEye" type="Area2D" parent="."]
 position = Vector2(-12, -10)
+monitorable = false
 script = ExtResource("6_kmmd7")
 elastic_position = SubResource("Resource_plh5m")
 
@@ -97,6 +98,7 @@ metadata/_custom_type_script = "uid://ds0kr25t27yso"
 
 [node name="RightEye" type="Area2D" parent="."]
 position = Vector2(12, -10)
+monitorable = false
 script = ExtResource("6_kmmd7")
 elastic_position = SubResource("Resource_clp6f")
 

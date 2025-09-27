@@ -6,10 +6,18 @@ extends RigidBody2D
 @export var face_toward: Node2D
 @export var move_force: float = 100
 @export var turn_force: float = 100
+@export var minimum_size: float = 0.5
+@export var maximum_size: float = 1.5
+@export var size_transfer_amount: float = 0.1
 
 @export var eyes: Array[Eye]
 var next_eye_index: int = 0
 
+var size: float = 1.0
+
+
+func _ready():
+    rotation = _get_angle_to_target()
 
 func _process(_delta):
     if is_numbered_action_just_pressed("jab"):
@@ -22,11 +30,29 @@ func _physics_process(_delta):
     var input_direction = get_numbered_input_direction()
     apply_central_force(input_direction * move_force)
 
-    var a = Vector2.DOWN.rotated(rotation).angle_to(
+    var a = _get_angle_to_target()
+    apply_torque(a * turn_force * TAU)
+
+
+func _get_angle_to_target() -> float:
+    return -Vector2.DOWN.rotated(rotation).angle_to(
         face_toward.position - position
     )
-    apply_torque(-a * turn_force)
 
+
+func steal_size() -> float:
+    var old_size = size
+    set_size(size - size_transfer_amount)
+    return old_size - size
+
+func add_size(amount: float):
+    set_size(size + amount)
+
+func set_size(value: float):
+    size = clampf(value, minimum_size, maximum_size);
+    mass = size * size
+    for eye in eyes: eye.recovery_scale = mass
+    # set scale
 
 
 func get_numbered_input_direction() -> Vector2:
