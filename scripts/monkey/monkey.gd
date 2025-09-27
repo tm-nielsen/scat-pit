@@ -3,21 +3,29 @@ extends RigidBody2D
 
 
 @export_range(1, 2) var player_number: int = 1
-@export var face_toward: Node2D
+
+@export_subgroup("movement")
 @export var move_force: float = 100
 @export var turn_force: float = 100
+
+@export_subgroup("references")
+@export var face_toward: Node2D
+@export var scaler: MonkeyScaler
+@export var eyes: Array[Eye]
+var next_eye_index: int = 0
+
+@export_subgroup("sizes")
+@export var default_size: float = 1
 @export var minimum_size: float = 0.5
 @export var maximum_size: float = 1.5
 @export var size_transfer_amount: float = 0.1
 
-@export var eyes: Array[Eye]
-var next_eye_index: int = 0
-
-var size: float = 1.0
+@onready var size: float
 
 
 func _ready():
     rotation = _get_angle_to_target()
+    set_size(default_size)
 
 func _process(_delta):
     if is_numbered_action_just_pressed("jab"):
@@ -52,7 +60,7 @@ func set_size(value: float):
     size = clampf(value, minimum_size, maximum_size);
     mass = size * size
     for eye in eyes: eye.recovery_scale = mass
-    # set scale
+    scaler.size = size
 
 
 func get_numbered_input_direction() -> Vector2:

@@ -26,6 +26,7 @@ func _ready():
 
 
 func _set_size(value: float):
+    size = value
     for target in scalers: target.scale(value)
 
 

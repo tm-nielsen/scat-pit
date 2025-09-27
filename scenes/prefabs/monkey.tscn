@@ -28,13 +28,15 @@ resource_local_to_scene = true
 script = ExtResource("7_lyg5m")
 metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
 
-[node name="Monkey" type="RigidBody2D" node_paths=PackedStringArray("eyes")]
+[node name="Monkey" type="RigidBody2D" node_paths=PackedStringArray("scaler", "eyes")]
 physics_material_override = SubResource("PhysicsMaterial_ik0ct")
 gravity_scale = 0.0
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("1_ik0ct")
+scaler = NodePath("Scaler")
 eyes = [NodePath("LeftEye"), NodePath("RightEye")]
+default_size = 0.8
 
 [node name="BodCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u5sy4")
