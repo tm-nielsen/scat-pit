@@ -5,7 +5,7 @@ extends Node2D
 @export var radius: float = 10: set = _set_radius;
 @export var fill_colour := Color.WHITE: set = _set_fill_colour
 @export var stroke_colour := Color.BLACK: set = _set_stroke_colour
-@export var stroke_width: float = 4: set = _set_stroke_width
+@export var stroke_width: float = 2: set = _set_stroke_width
 
 
 func _draw():

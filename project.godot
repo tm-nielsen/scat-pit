@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Skat Bop"
+run/main_scene="uid://b2c7qvsff3owx"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,9 +22,10 @@ driver/mix_rate=16000
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_width=1024
+window/size/viewport_height=1024
 window/size/mode=3
+window/stretch/mode="viewport"
 window/size/mode.editor=0
 
 [dotnet]
@@ -40,5 +42,6 @@ theme/default_font_antialiasing=0
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

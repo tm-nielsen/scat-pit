@@ -1,29 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxwuufur258du"]
+[gd_scene load_steps=6 format=3 uid="uid://bxwuufur258du"]
 
 [ext_resource type="WhisperResource" uid="uid://bapg3nvvma7qa" path="res://addons/godot_whisper/models/gglm-tiny.en.bin" id="1_bl13t"]
 [ext_resource type="Script" uid="uid://c1upsl6f5ps73" path="res://scripts/test_label.gd" id="1_iyx0m"]
 [ext_resource type="Script" uid="uid://bi2uokwx5k42v" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="2_iyx0m"]
-[ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/circle.gd" id="4_j5jx5"]
-[ext_resource type="Script" uid="uid://cfo3gjpryiwqk" path="res://scripts/arc.gd" id="5_lpvoh"]
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_bl13t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_errlg"]
 font_size = 64
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_at5dv"]
-radius = 32.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j5jx5"]
-radius = 20.0
-
-[node name="Control" type="Control"]
+[node name="Test" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_bl13t")
@@ -50,57 +38,5 @@ script = ExtResource("2_iyx0m")
 minimum_sentence_time = 2
 maximum_sentence_time = 4
 metadata/_custom_type_script = "uid://bi2uokwx5k42v"
-
-[node name="Monkey" type="RigidBody2D" parent="."]
-
-[node name="BodCollider" type="CollisionShape2D" parent="Monkey"]
-shape = SubResource("CircleShape2D_at5dv")
-
-[node name="NoseCollider" type="CollisionShape2D" parent="Monkey"]
-position = Vector2(0, -30)
-shape = SubResource("CircleShape2D_j5jx5")
-
-[node name="Bod" type="Node2D" parent="Monkey"]
-script = ExtResource("4_j5jx5")
-radius = 32.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="Nose" type="Node2D" parent="Monkey/Bod"]
-position = Vector2(0, -30)
-rotation = 2.8797932
-script = ExtResource("5_lpvoh")
-end_angle = 3.706
-radius = 20.0
-metadata/_custom_type_script = "uid://cfo3gjpryiwqk"
-
-[node name="LeftEar" type="Node2D" parent="Monkey/Bod"]
-position = Vector2(-34, 1)
-script = ExtResource("5_lpvoh")
-end_angle = 5.318
-radius = 8.0
-
-[node name="RightEar" type="Node2D" parent="Monkey/Bod"]
-position = Vector2(34, 1)
-rotation = 3.1415927
-scale = Vector2(1, -1)
-script = ExtResource("5_lpvoh")
-end_angle = 5.318
-radius = 8.0
-
-[node name="RightEye" type="Node2D" parent="Monkey"]
-position = Vector2(25, -20)
-script = ExtResource("4_j5jx5")
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="LeftEye" type="Node2D" parent="Monkey"]
-position = Vector2(-25, -20)
-script = ExtResource("4_j5jx5")
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="Mouth" type="Node2D" parent="Monkey"]
-position = Vector2(0, -54)
-script = ExtResource("4_j5jx5")
-radius = 6.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
 
 [connection signal="transcribed_msg" from="CaptureStreamToText" to="Label" method="receive_transcription"]
