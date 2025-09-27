@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://6lxf60xqjeix"]
+
+[ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/shapes/circle.gd" id="1_dh2fa"]
+[ext_resource type="Script" uid="uid://cfo3gjpryiwqk" path="res://scripts/shapes/arc.gd" id="2_ik0ct"]
+[ext_resource type="Script" uid="uid://c0ix0otioog5v" path="res://scripts/monkey/mouth.gd" id="3_n1hhs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gee14"]
+radius = 5.0
+
+[node name="Monkey" type="CharacterBody2D"]
+
+[node name="BodCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u5sy4")
+
+[node name="NoseCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("CircleShape2D_gee14")
+
+[node name="Bod" type="Node2D" parent="."]
+script = ExtResource("1_dh2fa")
+radius = 16.0
+metadata/_custom_type_script = "uid://ds0kr25t27yso"
+
+[node name="Nose" type="Node2D" parent="Bod"]
+position = Vector2(0, -15)
+rotation = 2.8797932
+script = ExtResource("2_ik0ct")
+end_angle = 3.706
+metadata/_custom_type_script = "uid://cfo3gjpryiwqk"
+
+[node name="LeftEar" type="Node2D" parent="Bod"]
+position = Vector2(-16, 0.5)
+script = ExtResource("2_ik0ct")
+end_angle = 5.318
+radius = 4.0
+stroke_width = 1.0
+
+[node name="RightEar" type="Node2D" parent="Bod"]
+position = Vector2(16, 0.5)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+script = ExtResource("2_ik0ct")
+end_angle = 5.318
+radius = 4.0
+stroke_width = 1.0
+
+[node name="RightEye" type="Node2D" parent="."]
+position = Vector2(12, -10)
+script = ExtResource("1_dh2fa")
+radius = 5.0
+fill_colour = Color(0, 0, 0, 1)
+stroke_width = 0.0
+metadata/_custom_type_script = "uid://ds0kr25t27yso"
+
+[node name="LeftEye" type="Node2D" parent="."]
+position = Vector2(-12, -10)
+script = ExtResource("1_dh2fa")
+radius = 5.0
+fill_colour = Color(0, 0, 0, 1)
+stroke_width = 0.0
+metadata/_custom_type_script = "uid://ds0kr25t27yso"
+
+[node name="Mouth" type="Node2D" parent="."]
+position = Vector2(0, -25)
+script = ExtResource("3_n1hhs")
+ratio = 0.5
+radius = 4.0
+stroke_width = 1.0
+metadata/_custom_type_script = "uid://n2kml8cqlk66"

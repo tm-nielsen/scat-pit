@@ -1,36 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctmomsylv2o63"]
+[gd_scene load_steps=4 format=3 uid="uid://ctmomsylv2o63"]
 
-[ext_resource type="Script" uid="uid://b4r03vjikpvs0" path="res://scripts/ring.gd" id="1_lnu2h"]
-[ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/circle.gd" id="2_lbhrr"]
-[ext_resource type="Script" uid="uid://cfo3gjpryiwqk" path="res://scripts/arc.gd" id="3_iywne"]
+[ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/shapes/circle.gd" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://6lxf60xqjeix" path="res://scenes/prefabs/monkey.tscn" id="2_yqjtg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
 radius = 40.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
-radius = 8.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gee14"]
-radius = 5.0
-
 [node name="Game" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.5211406, 0.5211406, 0.5211405, 1)
-
 [node name="Ring" type="Area2D" parent="."]
-script = ExtResource("1_lnu2h")
 
 [node name="Collider" type="CollisionShape2D" parent="Ring"]
 shape = SubResource("CircleShape2D_p57ef")
@@ -41,62 +19,4 @@ radius = 40.0
 stroke_width = 1.0
 metadata/_custom_type_script = "uid://ds0kr25t27yso"
 
-[node name="Monkey" type="CharacterBody2D" parent="."]
-
-[node name="BodCollider" type="CollisionShape2D" parent="Monkey"]
-shape = SubResource("CircleShape2D_u5sy4")
-
-[node name="NoseCollider" type="CollisionShape2D" parent="Monkey"]
-position = Vector2(0, -7.5)
-shape = SubResource("CircleShape2D_gee14")
-
-[node name="Bod" type="Node2D" parent="Monkey"]
-script = ExtResource("2_lbhrr")
-radius = 16.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="Nose" type="Node2D" parent="Monkey/Bod"]
-position = Vector2(0, -15)
-rotation = 2.8797932
-script = ExtResource("3_iywne")
-end_angle = 3.706
-metadata/_custom_type_script = "uid://cfo3gjpryiwqk"
-
-[node name="LeftEar" type="Node2D" parent="Monkey/Bod"]
-position = Vector2(-16, 0.5)
-script = ExtResource("3_iywne")
-end_angle = 5.318
-radius = 4.0
-stroke_width = 1.0
-
-[node name="RightEar" type="Node2D" parent="Monkey/Bod"]
-position = Vector2(16, 0.5)
-rotation = 3.1415927
-scale = Vector2(1, -1)
-script = ExtResource("3_iywne")
-end_angle = 5.318
-radius = 4.0
-stroke_width = 1.0
-
-[node name="RightEye" type="Node2D" parent="Monkey"]
-position = Vector2(12, -10)
-script = ExtResource("2_lbhrr")
-radius = 5.0
-fill_colour = Color(0, 0, 0, 1)
-stroke_width = 0.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="LeftEye" type="Node2D" parent="Monkey"]
-position = Vector2(-12, -10)
-script = ExtResource("2_lbhrr")
-radius = 5.0
-fill_colour = Color(0, 0, 0, 1)
-stroke_width = 0.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
-
-[node name="Mouth" type="Node2D" parent="Monkey"]
-position = Vector2(0, -25)
-script = ExtResource("2_lbhrr")
-radius = 3.0
-stroke_width = 1.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
+[node name="Monkey" parent="." instance=ExtResource("2_yqjtg")]
