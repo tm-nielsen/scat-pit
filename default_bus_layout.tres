@@ -1,7 +1,12 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dbwyqjaohn2dr"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dbwyqjaohn2dr"]
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]
 resource_name = "Capture"
+
+[sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_j3pel"]
+resource_name = "SpectrumAnalyzer"
+buffer_length = 0.5
+fft_size = 0
 
 [resource]
 bus/1/name = &"Record"
@@ -12,3 +17,5 @@ bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectCapture_j3pel")
 bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectSpectrumAnalyzer_j3pel")
+bus/1/effect/1/enabled = true
