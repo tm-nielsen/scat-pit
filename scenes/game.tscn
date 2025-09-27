@@ -1,11 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctmomsylv2o63"]
+[gd_scene load_steps=14 format=3 uid="uid://ctmomsylv2o63"]
 
 [ext_resource type="Script" uid="uid://b4r03vjikpvs0" path="res://scripts/ring.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/shapes/circle.gd" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://6lxf60xqjeix" path="res://scenes/prefabs/monkey.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://bf55jbuq0yl6x" path="res://scripts/utilities/elastic_vector2.gd" id="4_lbhrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
 radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iywne"]
+resource_local_to_scene = true
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_lyg5m"]
+resource_local_to_scene = true
+script = ExtResource("4_lbhrr")
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
+
+[sub_resource type="Resource" id="Resource_plh5m"]
+resource_local_to_scene = true
+script = ExtResource("4_lbhrr")
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gee14"]
+resource_local_to_scene = true
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0tnpc"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_vtaks"]
+resource_local_to_scene = true
+script = ExtResource("4_lbhrr")
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
+
+[sub_resource type="Resource" id="Resource_kvpfn"]
+resource_local_to_scene = true
+script = ExtResource("4_lbhrr")
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
 
 [node name="Game" type="Node2D"]
 
@@ -25,10 +60,34 @@ metadata/_custom_type_script = "uid://ds0kr25t27yso"
 position = Vector2(-30, 0)
 face_toward = NodePath("../Monkey2")
 
+[node name="BodCollider" parent="Monkey" index="0"]
+shape = SubResource("CircleShape2D_iywne")
+
+[node name="NoseCollider" parent="Monkey" index="1"]
+shape = SubResource("CircleShape2D_u5sy4")
+
+[node name="LeftEye" parent="Monkey" index="3"]
+elastic_position = SubResource("Resource_lyg5m")
+
+[node name="RightEye" parent="Monkey" index="4"]
+elastic_position = SubResource("Resource_plh5m")
+
 [node name="Monkey2" parent="." node_paths=PackedStringArray("face_toward") instance=ExtResource("2_yqjtg")]
 position = Vector2(30, 0)
 player_number = 2
 face_toward = NodePath("../Monkey")
+
+[node name="BodCollider" parent="Monkey2" index="0"]
+shape = SubResource("CircleShape2D_gee14")
+
+[node name="NoseCollider" parent="Monkey2" index="1"]
+shape = SubResource("CircleShape2D_0tnpc")
+
+[node name="LeftEye" parent="Monkey2" index="3"]
+elastic_position = SubResource("Resource_vtaks")
+
+[node name="RightEye" parent="Monkey2" index="4"]
+elastic_position = SubResource("Resource_kvpfn")
 
 [editable path="Monkey"]
 [editable path="Monkey2"]
