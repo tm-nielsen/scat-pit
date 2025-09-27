@@ -21,10 +21,9 @@ var high_range_magnitude: Vector2
 var total_magnitude: Vector2
 var average_magnitude: float
 
-var low_range_share: Vector2
-var average_low_range_share: float
-var high_range_share: Vector2
-var average_high_range_share: float
+var low_range_ratio: Vector2
+var high_range_ratio: Vector2
+var range_weight: float
 
 
 func _ready() -> void:
@@ -55,19 +54,24 @@ func _process(_delta: float) -> void:
     total_magnitude = low_range_magnitude + high_range_magnitude
     average_magnitude = (total_magnitude.x + total_magnitude.y) / 2
 
-    low_range_share = (
-        low_range_magnitude / total_magnitude
-        if total_magnitude.x != 0 && total_magnitude.y != 0
-        else Vector2(0.5, 0.5)
-    )
-    high_range_share = Vector2.ONE - low_range_share
+    low_range_ratio = get_ratio(low_range_magnitude, total_magnitude)
+    high_range_ratio = get_ratio(high_range_magnitude, total_magnitude)
 
-    average_low_range_share = (
-        low_range_share.x + low_range_share.y
-    ) / 2
-    average_high_range_share = (
-        high_range_share.x + high_range_share.y
-    ) / 2
+    var ratio_offset = high_range_ratio - low_range_ratio
+    range_weight = (
+        (ratio_offset.x + ratio_offset.y)
+        * average_magnitude
+    )
+
+
+func get_ratio(band: Vector2, total: Vector2) -> Vector2:
+    return Vector2(
+        safe_remap(band.x, total.x),
+        safe_remap(band.y, total.y)
+    )
+
+func safe_remap(a: float, b: float) -> float:
+    return 0.5 if b == 0 else remap(a, 0, b, 0, 1)
 
 
 func get_range(

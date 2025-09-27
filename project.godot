@@ -27,8 +27,8 @@ GlobalSignalBus="*res://scripts/globals/global_signal_bus.gd"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=1024
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/size/mode.editor=0
@@ -44,6 +44,7 @@ enabled=PackedStringArray("res://addons/godot_whisper/plugin.cfg")
 [gui]
 
 theme/default_font_antialiasing=0
+theme/custom="uid://ckj3xyu5vh54a"
 
 [input]
 
@@ -107,6 +108,11 @@ p2_push={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":77,"physical_keycode":0,"key_label":0,"unicode":109,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_2="Layer 2"
+2d_physics/layer_3="Layer 3"
 
 [rendering]
 

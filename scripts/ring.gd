@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
     radius += delta * grow_speed * (
         PitchAnalyser.average_magnitude
         * 0.5 * (
-            1 - PitchAnalyser.low_range_share.x
-            - PitchAnalyser.low_range_share.y
+            1 - PitchAnalyser.low_range_ratio.x
+            - PitchAnalyser.low_range_ratio.y
         )
     )
     radius = clampf(radius, minimum_radius, maximum_radius)

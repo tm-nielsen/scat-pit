@@ -7,7 +7,7 @@ signal monkey_bounced(collision_velocity: Vector2)
 
 func notify_jab_landed(attacker: Monkey, target: Monkey):
     jab_landed.emit(Vector2.UP.rotated(attacker.rotation), attacker.size)
-    var new_sizes = [1, 1]
+    var new_sizes: Array[float] = [1, 1]
     new_sizes[attacker.player_number - 1] = attacker.size
     new_sizes[target.player_number - 1] = target.size
     monkey_sizes_changed.emit(new_sizes)
