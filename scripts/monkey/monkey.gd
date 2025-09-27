@@ -39,7 +39,7 @@ func _physics_process(_delta):
     apply_central_force(input_direction * move_force)
 
     var a = _get_angle_to_target()
-    apply_torque(a * turn_force * TAU)
+    apply_torque(a * turn_force)
 
 
 func _get_angle_to_target() -> float:
