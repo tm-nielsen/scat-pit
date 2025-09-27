@@ -25,6 +25,7 @@ var jab_tween: Tween
 
 func _ready():
     body_entered.connect(_on_body_entered)
+    monitoring = false
 
 func _physics_process(delta):
     elastic_position.update_value(
@@ -58,7 +59,6 @@ func trigger_jab():
 func _on_body_entered(body: PhysicsBody2D):
     if body == parent: return
     if body is Monkey:
-        print(parent.name, " -> ", body.name)
         parent.add_size(body.steal_size())
         body.apply_impulse(
             global_position,
