@@ -65,6 +65,7 @@ func _on_body_entered(body: PhysicsBody2D):
             Vector2.UP.rotated(global_rotation)
             * push_force
         )
+        GlobalSignalBus.notify_jab_landed(parent, body)
         _disable_monitoring()
 
 func _disable_monitoring():

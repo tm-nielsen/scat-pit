@@ -23,6 +23,7 @@ driver/mix_rate=16000
 [autoload]
 
 PitchAnalyser="*res://scenes/pitch_analyser.tscn"
+GlobalSignalBus="*res://scripts/globals/global_signal_bus.gd"
 
 [display]
 

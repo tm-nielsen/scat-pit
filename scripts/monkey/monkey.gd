@@ -26,6 +26,9 @@ var next_eye_index: int = 0
 func _ready():
     rotation = _get_angle_to_target()
     set_size(default_size)
+    body_entered.connect(
+        GlobalSignalBus.notify_monkey_bounced.bind(self)
+    )
 
 func _process(_delta):
     if is_numbered_action_just_pressed("jab"):
@@ -64,20 +67,20 @@ func set_size(value: float):
 
 
 func get_numbered_input_direction() -> Vector2:
-  var vertical_input_direction = _get_numbered_input_axis("up", "down")
-  var horizontal_input_direction = _get_numbered_input_axis("left", "right")
-  return Vector2(horizontal_input_direction, vertical_input_direction).normalized()
+    var vertical_input_direction = _get_numbered_input_axis("up", "down")
+    var horizontal_input_direction = _get_numbered_input_axis("left", "right")
+    return Vector2(horizontal_input_direction, vertical_input_direction).normalized()
 
 func is_numbered_action_just_pressed(simple_name: String) -> bool:
-  return Input.is_action_just_pressed(_get_input_name(simple_name))
+    return Input.is_action_just_pressed(_get_input_name(simple_name))
 
 func is_numbered_action_pressed(simple_name: String) -> bool:
-  return Input.is_action_pressed(_get_input_name(simple_name))
+    return Input.is_action_pressed(_get_input_name(simple_name))
 
 func _get_numbered_input_axis(negative_action: String, positive_action: String) -> float:
-  var negative_action_name = _get_input_name(negative_action)
-  var positive_action_name = _get_input_name(positive_action)
-  return Input.get_axis(negative_action_name, positive_action_name)
+    var negative_action_name = _get_input_name(negative_action)
+    var positive_action_name = _get_input_name(positive_action)
+    return Input.get_axis(negative_action_name, positive_action_name)
 
 func _get_input_name(simple_name: String) -> String:
-  return ("p%d_" % player_number) + simple_name
+    return ("p%d_" % player_number) + simple_name
