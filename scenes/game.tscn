@@ -21,14 +21,14 @@ radius = 40.0
 stroke_width = 1.0
 metadata/_custom_type_script = "uid://ds0kr25t27yso"
 
-[node name="Monkey" parent="." instance=ExtResource("2_yqjtg")]
+[node name="Monkey" parent="." node_paths=PackedStringArray("face_toward") instance=ExtResource("2_yqjtg")]
 position = Vector2(-30, 0)
+face_toward = NodePath("../Monkey2")
 
-[node name="Monkey2" parent="." instance=ExtResource("2_yqjtg")]
+[node name="Monkey2" parent="." node_paths=PackedStringArray("face_toward") instance=ExtResource("2_yqjtg")]
 position = Vector2(30, 0)
-
-[node name="Mouth" parent="Monkey2" index="5"]
-side = 1
+player_number = 2
+face_toward = NodePath("../Monkey")
 
 [editable path="Monkey"]
 [editable path="Monkey2"]
