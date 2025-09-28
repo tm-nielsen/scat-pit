@@ -1,18 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2c7qvsff3owx"]
+[gd_scene load_steps=4 format=3 uid="uid://b2c7qvsff3owx"]
 
 [ext_resource type="PackedScene" uid="uid://ctmomsylv2o63" path="res://scenes/game.tscn" id="1_j5px3"]
 [ext_resource type="PackedScene" uid="uid://cd6u2eukmtsic" path="res://scenes/prefabs/ui/player_score_bar.tscn" id="1_lrqlo"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_twpsu"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lrqlo"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sqa0i"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jh1ax"]
-normal = Vector2(-1, 0)
+[ext_resource type="PackedScene" uid="uid://dro0flqek4jlm" path="res://scenes/prefabs/game_camera.tscn" id="2_lrqlo"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -59,25 +49,7 @@ audio_listener_enable_2d = true
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="HBox/SubViewportContainer/SubViewport"]
-
-[node name="Walls" type="AnimatableBody2D" parent="HBox/SubViewportContainer/SubViewport/Camera2D"]
-
-[node name="Top" type="CollisionShape2D" parent="HBox/SubViewportContainer/SubViewport/Camera2D/Walls"]
-position = Vector2(0, -64)
-shape = SubResource("WorldBoundaryShape2D_twpsu")
-
-[node name="Bottom" type="CollisionShape2D" parent="HBox/SubViewportContainer/SubViewport/Camera2D/Walls"]
-position = Vector2(0, 64)
-shape = SubResource("WorldBoundaryShape2D_lrqlo")
-
-[node name="Left" type="CollisionShape2D" parent="HBox/SubViewportContainer/SubViewport/Camera2D/Walls"]
-position = Vector2(-64, 0)
-shape = SubResource("WorldBoundaryShape2D_sqa0i")
-
-[node name="Right" type="CollisionShape2D" parent="HBox/SubViewportContainer/SubViewport/Camera2D/Walls"]
-position = Vector2(64, 0)
-shape = SubResource("WorldBoundaryShape2D_jh1ax")
+[node name="GameCamera" parent="HBox/SubViewportContainer/SubViewport" instance=ExtResource("2_lrqlo")]
 
 [node name="Game" parent="HBox/SubViewportContainer/SubViewport" instance=ExtResource("1_j5px3")]
 

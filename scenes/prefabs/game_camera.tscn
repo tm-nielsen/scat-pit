@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dro0flqek4jlm"]
+
+[ext_resource type="Script" uid="uid://dhmmf4ltyeh68" path="res://scripts/camera_shaker.gd" id="1_tgn5m"]
+[ext_resource type="Script" uid="uid://bf55jbuq0yl6x" path="res://scripts/utilities/elastic_vector2.gd" id="2_nvfrb"]
+
+[sub_resource type="Resource" id="Resource_bo8x5"]
+script = ExtResource("2_nvfrb")
+friction = Vector2(2, 2)
+metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_twpsu"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lrqlo"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sqa0i"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jh1ax"]
+normal = Vector2(-1, 0)
+
+[node name="GameCamera" type="Camera2D" node_paths=PackedStringArray("walls_node")]
+script = ExtResource("1_tgn5m")
+elastic_position = SubResource("Resource_bo8x5")
+pitch_zoom_maximum = 1.5
+walls_node = NodePath("Walls")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -64)
+shape = SubResource("WorldBoundaryShape2D_twpsu")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 64)
+shape = SubResource("WorldBoundaryShape2D_lrqlo")
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-64, 0)
+shape = SubResource("WorldBoundaryShape2D_sqa0i")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(64, 0)
+shape = SubResource("WorldBoundaryShape2D_jh1ax")

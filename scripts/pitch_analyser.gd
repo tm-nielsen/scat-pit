@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 
     # account for low range resonance
     high_range_magnitude -= low_range_magnitude
-    high_range_magnitude = high_range_magnitude.clamp(Vector2.ZERO, Vector2.INF)
+    high_range_magnitude = high_range_magnitude.clampf(0, INF)
 
     low_range_magnitude *= low_range_normalizing_factor
     high_range_magnitude *= high_range_normalizing_factor

@@ -31,7 +31,7 @@ var next_eye_index: int = 0
 
 func _ready():
     body_entered.connect(
-        GlobalSignalBus.notify_monkey_bounced.bind(self)
+        func(_b): GlobalSignalBus.notify_monkey_bounced(self)
     )
     modulate = PLAYER_COLOURS[player_number - 1]
     mouth.set_side_from_player_number(player_number)

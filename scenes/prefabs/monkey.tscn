@@ -31,6 +31,8 @@ metadata/_custom_type_script = "uid://bf55jbuq0yl6x"
 [node name="Monkey" type="RigidBody2D" node_paths=PackedStringArray("scaler")]
 physics_material_override = SubResource("PhysicsMaterial_ik0ct")
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("1_ik0ct")

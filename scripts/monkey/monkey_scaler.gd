@@ -8,7 +8,7 @@ var size: float = 1: set = _set_size
 @export var eyes: Array[Eye]
 @export var mouth: Mouth
 
-var scalers: Array[Scaler]
+var scalers: Array[Node2DScaler]
 
 
 func _ready():
@@ -81,17 +81,3 @@ class CircleScaler extends Node2DScaler:
     func scale(value: float):
         super(value)
         target.radius = base_radius * value
-
-
-class Node2DScaler extends Scaler:
-    var target: Node2D
-    var base_position: Vector2
-
-    func _init(node: Node2D):
-        target = node
-        base_position = target.position
-
-    func scale(value: float):
-        target.position = base_position * value
-
-class Scaler: func scale(_value: float) -> void: pass

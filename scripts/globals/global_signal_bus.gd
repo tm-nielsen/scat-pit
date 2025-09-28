@@ -2,7 +2,7 @@ extends Node
 
 signal monkey_sizes_changed(new_sizes: Array[float])
 signal jab_landed(direction: Vector2, attacker_size: float)
-signal monkey_bounced(collision_velocity: Vector2)
+signal monkey_bounced(collision_momentum: Vector2)
 
 
 func notify_jab_landed(attacker: Monkey, target: Monkey):
@@ -13,4 +13,4 @@ func notify_jab_landed(attacker: Monkey, target: Monkey):
     monkey_sizes_changed.emit(new_sizes)
 
 func notify_monkey_bounced(m: Monkey):
-    monkey_bounced.emit(-m.linear_velocity)
+    monkey_bounced.emit(-m.linear_velocity * m.mass)
