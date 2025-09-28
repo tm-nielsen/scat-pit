@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctmomsylv2o63"]
+[gd_scene load_steps=3 format=3 uid="uid://ctmomsylv2o63"]
 
-[ext_resource type="Script" uid="uid://b4r03vjikpvs0" path="res://scripts/ring.gd" id="1_lnu2h"]
-[ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/shapes/circle.gd" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dqonm1a1hn3mq" path="res://scenes/prefabs/wave_circle.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://6lxf60xqjeix" path="res://scenes/prefabs/monkey.tscn" id="2_yqjtg"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
-radius = 40.0
 
 [node name="Game" type="Node2D"]
 
@@ -23,17 +19,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Ring" type="Area2D" parent="."]
-script = ExtResource("1_lnu2h")
-
-[node name="Collider" type="CollisionShape2D" parent="Ring"]
-shape = SubResource("CircleShape2D_p57ef")
-
-[node name="Circle" type="Node2D" parent="Ring"]
-script = ExtResource("2_lbhrr")
-radius = 40.0
-stroke_width = 1.0
-metadata/_custom_type_script = "uid://ds0kr25t27yso"
+[node name="WaveCircle" parent="." instance=ExtResource("1_yqjtg")]
 
 [node name="Monkey" parent="." node_paths=PackedStringArray("face_toward") instance=ExtResource("2_yqjtg")]
 position = Vector2(-30, 0)

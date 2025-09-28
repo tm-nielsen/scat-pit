@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqonm1a1hn3mq"]
+
+[ext_resource type="Shader" uid="uid://dd6ctjkyfq10h" path="res://visuals/shaders/sine_wave.gdshader" id="1_ygf3c"]
+[ext_resource type="Texture2D" uid="uid://cvpjmf3hidd0" path="res://visuals/sprites/circle.png" id="2_ofcfj"]
+[ext_resource type="Script" uid="uid://ds0kr25t27yso" path="res://scripts/shapes/circle.gd" id="3_x4j3v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
+shader = ExtResource("1_ygf3c")
+shader_parameter/frequency = 2.0
+shader_parameter/height = 0.5
+shader_parameter/thickness = 0.25
+shader_parameter/velocity = 2.0
+shader_parameter/offset = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
+shader = ExtResource("1_ygf3c")
+shader_parameter/frequency = 1.0
+shader_parameter/height = 0.5
+shader_parameter/thickness = 0.150000007125
+shader_parameter/velocity = 1.0
+shader_parameter/offset = 0.0
+
+[node name="WaveCircle" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+
+[node name="High" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_u5sy4")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ofcfj")
+
+[node name="Low" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_gee14")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ofcfj")
+
+[node name="Border" type="Node2D" parent="."]
+script = ExtResource("3_x4j3v")
+radius = 64.0
+fill_colour = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://ds0kr25t27yso"
