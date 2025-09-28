@@ -4,12 +4,13 @@ extends Node
 @export var spectrum_analyser_effect_index: int = 1
 
 @export_subgroup("parameters")
+@export_range(0, 1) var high_harmonic_culling_factor: float = 0.5
 @export_subgroup("parameters/low range", "low_range")
-@export var low_range_normalizing_factor: float = 20
+@export var low_range_normalizing_factor: float = 10
 @export var low_range_minimum_frequency: float = 100
 @export var low_range_maximum_frequency: float = 300
 @export_subgroup("parameters/high range", "high_range")
-@export var high_range_normalizing_factor: float = 40
+@export var high_range_normalizing_factor: float = 20
 @export var high_range_minimum_frequency: float = 300
 @export var high_range_maximum_frequency: float = 600
 
@@ -45,7 +46,7 @@ func _process(_delta: float) -> void:
     )
 
     # account for low range resonance
-    high_range_magnitude -= low_range_magnitude
+    high_range_magnitude -= low_range_magnitude * high_harmonic_culling_factor
     high_range_magnitude = high_range_magnitude.clampf(0, INF)
 
     low_range_magnitude *= low_range_normalizing_factor
