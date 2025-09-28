@@ -12,6 +12,11 @@ const HIGH := TargetPitch.HIGH
 @export var fill: ColorRect
 @export var fill_threshold: float = 500
 
+@export_subgroup("prompt labels")
+@export var low_pitch_prompt_texture: Texture2D
+@export var high_pitch_prompt_texture: Texture2D
+@export var prompt_display_nodes: Array[TextureRect]
+
 var target_pitch: TargetPitch
 var target_stretch_ratio: float
 
@@ -25,6 +30,7 @@ func _ready():
     )
     modulate = Monkey.PLAYER_COLOURS[player_index]
     _initialize_fill.call_deferred()
+    _update_target_pitch([1,1])
 
 func _process(_delta):
     var target_range_weight = _get_target_range_weight()
@@ -72,3 +78,13 @@ func _update_target_pitch(new_sizes: Array[float]):
         if new_sizes[player_index] == new_sizes.max()
         else HIGH
     )
+    _update_prompt_texture()
+
+func _update_prompt_texture():
+    var prompt_texture: Texture2D
+    match target_pitch:
+        NONE: prompt_texture = null
+        LOW: prompt_texture = low_pitch_prompt_texture
+        HIGH: prompt_texture = high_pitch_prompt_texture
+    for texture_rect in prompt_display_nodes:
+        texture_rect.texture = prompt_texture
