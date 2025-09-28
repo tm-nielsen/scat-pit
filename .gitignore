@@ -24,5 +24,7 @@ mono_crash.*.json
 [Rr]elease/
 [Bb]uilds/
 
+*.kra~
+*.png~
 
 settings.ini
