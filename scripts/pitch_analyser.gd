@@ -1,7 +1,7 @@
 extends Node
 
 @export var input_bus_name := "Input"
-@export var spectrum_analyser_effect_index: int = 2
+@export var spectrum_analyser_effect_index: int = 1
 
 @export_subgroup("parameters")
 @export_subgroup("parameters/low range", "low_range")
