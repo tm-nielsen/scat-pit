@@ -84,8 +84,8 @@ stroke_width = 1.0
 [node name="Mouth" type="Node2D" parent="Scaler"]
 position = Vector2(0, -25)
 script = ExtResource("3_n1hhs")
-ratio = 0.5
-radius = 4.0
+ratio = 0.6
+radius = 12.0
 stroke_width = 1.0
 metadata/_custom_type_script = "uid://n2kml8cqlk66"
 

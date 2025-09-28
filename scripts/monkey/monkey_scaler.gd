@@ -53,7 +53,7 @@ class MouthScaler extends Node2DScaler:
         base_normal_radius = mouth_node.normal_radius
 
     func scale(value: float):
-        super(value)
+        target.base_position = base_position * value
         target.normal_radius = base_normal_radius * value
 
 
