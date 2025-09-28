@@ -34,7 +34,7 @@ func _ready():
         func(_b): GlobalSignalBus.notify_monkey_bounced(self)
     )
     modulate = PLAYER_COLOURS[player_number - 1]
-    mouth.set_side_from_player_number(player_number)
+    mouth.initialize_pitch_target(player_number - 1)
     rotation = _get_angle_to_target()
     set_size(default_size)
 

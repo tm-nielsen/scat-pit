@@ -1,11 +1,6 @@
 class_name PlayerScoreMeter
 extends Control
 
-enum TargetPitch { NONE, LOW, HIGH }
-const NONE := TargetPitch.NONE
-const LOW := TargetPitch.LOW
-const HIGH := TargetPitch.HIGH
-
 @export_range(0, 1) var player_index: int = 0
 @export var minimum_stretch_ratio: float = 0.5
 @export var maximum_stretch_ratio: float = 2
@@ -18,9 +13,9 @@ const HIGH := TargetPitch.HIGH
 @export var high_pitch_prompt_texture: Texture2D
 @export var prompt_display_nodes: Array[TextureRect]
 
-var target_pitch: TargetPitch
-var target_stretch_ratio: float
+var pitch_target_tracker: PitchTargetTracker
 
+var target_stretch_ratio: float
 var full_height: float = 0
 var fill_amount: float = 0
 
@@ -29,15 +24,14 @@ var is_empty: bool: get = _get_is_empty
 
 
 func _ready():
-    GlobalSignalBus.monkey_sizes_changed.connect(
-        _update_target_pitch
-    )
+    pitch_target_tracker = PitchTargetTracker.new(player_index)
+    pitch_target_tracker.target_changed.connect(_update_prompt_texture)
     modulate = Monkey.PLAYER_COLOURS[player_index]
     _initialize_fill.call_deferred()
-    _update_target_pitch([1,1])
+    _update_prompt_texture(PitchTargetTracker.NONE)
 
 func _process(_delta):
-    var target_range_weight = _get_target_range_weight()
+    var target_range_weight = pitch_target_tracker.target_weight
     _add_fill(target_range_weight)
     _update_target_stretch_ratio(target_range_weight)
     size_flags_stretch_ratio = lerpf(
@@ -67,29 +61,12 @@ func _update_target_stretch_ratio(weight: float):
         , maximum_stretch_ratio
     )
 
-func _get_target_range_weight() -> float:
-    if target_pitch == NONE: return 0
-    return (
-        PitchAnalyser.range_weight *
-        (1 if target_pitch == HIGH else -1)
-    )
-
-
-func _update_target_pitch(new_sizes: Array[float]):
-    if new_sizes[0] == new_sizes[1]: target_pitch = NONE
-    else: target_pitch = (
-        LOW
-        if new_sizes[player_index] == new_sizes.max()
-        else HIGH
-    )
-    _update_prompt_texture()
-
-func _update_prompt_texture():
+func _update_prompt_texture(target_pitch: PitchTargetTracker.TargetPitch):
     var prompt_texture: Texture2D
     match target_pitch:
-        NONE: prompt_texture = null
-        LOW: prompt_texture = low_pitch_prompt_texture
-        HIGH: prompt_texture = high_pitch_prompt_texture
+        PitchTargetTracker.NONE: prompt_texture = null
+        PitchTargetTracker.LOW: prompt_texture = low_pitch_prompt_texture
+        PitchTargetTracker.HIGH: prompt_texture = high_pitch_prompt_texture
     for texture_rect in prompt_display_nodes:
         texture_rect.texture = prompt_texture
 
