@@ -3,6 +3,7 @@ extends Control
 @export var score_meters: Array[PlayerScoreMeter]
 @export var gameplay_root: Node
 @export var monkey_colour_node: Node2D
+@export var animator: AnimationPlayer
 @export var replay_delay: float = 3
 
 var replay_enabled: bool = false
@@ -10,6 +11,11 @@ var replay_enabled: bool = false
 
 func _ready():
     visible = false
+    animator.animation_finished.connect(
+        func(animation_name: String):
+        if(animation_name == "turn"):
+            animator.play("idle")
+    )
 
 func _process(_delta):
     if !visible:
@@ -31,3 +37,4 @@ func trigger(player_index: int):
 
 func enable_replay():
     replay_enabled = true
+    animator.play("turn")
