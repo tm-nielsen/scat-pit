@@ -44,6 +44,7 @@ func _physics_process(delta):
 
 
 func trigger_jab():
+    GlobalSignalBus.notify_jab_thrown(parent)
     jab_tween = TweenHelpers.build_tween(self)
     monitoring = true
     jab_tween.tween_property(

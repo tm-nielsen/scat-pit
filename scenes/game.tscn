@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctmomsylv2o63"]
+[gd_scene load_steps=4 format=3 uid="uid://ctmomsylv2o63"]
 
 [ext_resource type="PackedScene" uid="uid://dqonm1a1hn3mq" path="res://scenes/prefabs/wave_circle.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://6lxf60xqjeix" path="res://scenes/prefabs/monkey.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://c5fs3ofkyradx" path="res://scripts/audio/sfx_player.gd" id="3_lnu2h"]
 
 [node name="Game" type="Node2D"]
 
@@ -29,3 +30,6 @@ face_toward = NodePath("../Monkey2")
 position = Vector2(30, 0)
 player_number = 2
 face_toward = NodePath("../Monkey")
+
+[node name="SFX" type="Node" parent="."]
+script = ExtResource("3_lnu2h")
