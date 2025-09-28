@@ -11,7 +11,7 @@ shader_parameter/frequency = 2.0
 shader_parameter/height = 0.5
 shader_parameter/thickness = 0.25
 shader_parameter/border_thickness = 0.04
-shader_parameter/velocity = -1.0
+shader_parameter/velocity = -0.5
 shader_parameter/offset = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
@@ -20,7 +20,7 @@ shader_parameter/frequency = 1.0
 shader_parameter/height = 0.5
 shader_parameter/thickness = 0.150000007125
 shader_parameter/border_thickness = 0.04
-shader_parameter/velocity = 1.0
+shader_parameter/velocity = 0.5
 shader_parameter/offset = 0.0
 
 [node name="WaveCircle" type="Node2D"]
@@ -31,7 +31,7 @@ material = SubResource("ShaderMaterial_u5sy4")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ofcfj")
 script = ExtResource("3_ofcfj")
-offset_velocity = -4.0
+offset_velocity = -5.0
 
 [node name="LeftWave" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gee14")
@@ -39,6 +39,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ofcfj")
 script = ExtResource("3_ofcfj")
 player_index = 1
+offset_velocity = 5.0
 
 [node name="Border" type="Node2D" parent="."]
 script = ExtResource("3_x4j3v")

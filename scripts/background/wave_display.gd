@@ -37,7 +37,7 @@ func _process(delta):
 
     wave_offset += (
         offset_velocity * target_level *
-        delta / display_frequency
+        delta * sqrt(1 / display_frequency)
     )
     _set_parameter("offset", wave_offset)
     if dynamic_frequency_enabled: _update_dynamic_display_frequency()
