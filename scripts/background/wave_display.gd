@@ -49,7 +49,7 @@ func _display_level(normalized_value: float):
         remap(
             normalized_value, 0, 1,
             minimum_thickness, maximum_thickness
-        )
+        ) * sqrt(minimum_frequency / display_frequency)
     )
 
 func _enable_dynamic_frequency():
