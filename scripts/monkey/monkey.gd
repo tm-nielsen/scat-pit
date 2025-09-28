@@ -1,8 +1,9 @@
 class_name Monkey
 extends RigidBody2D
 
-const PLAYER_COLOURS: Array[Color] = [
-    Color8(255, 80, 80), Color8(80, 80, 255)
+static var PLAYER_COLOURS: Array[Color] = [
+    Color.from_hsv(0, 0.7, 1),
+    Color.from_hsv(0.58, 0.7, 1)
 ]
 
 @export_range(1, 2) var player_number: int = 1

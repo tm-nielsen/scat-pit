@@ -23,6 +23,7 @@ func _ready():
     GlobalSignalBus.monkey_sizes_changed.connect(
         _update_target_pitch
     )
+    modulate = Monkey.PLAYER_COLOURS[player_index]
     _initialize_fill.call_deferred()
 
 func _process(_delta):
