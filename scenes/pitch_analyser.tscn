@@ -11,3 +11,4 @@ script = ExtResource("1_kuvwg")
 stream = SubResource("AudioStreamMicrophone_kuvwg")
 autoplay = true
 bus = &"Input"
+playback_type = 1
