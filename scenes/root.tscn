@@ -63,3 +63,14 @@ visible = false
 layout_mode = 1
 score_meters = [NodePath("../HBox/Player1ScoreBar"), NodePath("../HBox/Player2ScoreBar")]
 gameplay_root = NodePath("../HBox")
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Intro" type="AudioStreamPlayer" parent="Music"]
+autoplay = true
+bus = &"Music"
+
+[node name="Loop" type="AudioStreamPlayer" parent="Music"]
+bus = &"Music"
+
+[connection signal="finished" from="Music/Intro" to="Music/Loop" method="play"]
