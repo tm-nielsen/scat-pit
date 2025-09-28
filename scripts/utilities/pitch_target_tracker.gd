@@ -25,15 +25,14 @@ func _init(index: int) -> void:
 
 
 func _update_target_pitch(new_sizes: Array[float]):
-    if new_sizes[0] == new_sizes[1]:
-        target_pitch = NONE
-        target_cleared.emit()
+    if new_sizes[0] == new_sizes[1]: target_pitch = NONE
     else: target_pitch = (
         LOW
         if new_sizes[player_index] == new_sizes.max()
         else HIGH
     )
     target_changed.emit(int(target_pitch))
+    if target_pitch == NONE: target_cleared.emit()
 
 
 func _get_target_ratio() -> float:
