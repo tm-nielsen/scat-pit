@@ -58,7 +58,8 @@ render_target_update_mode = 4
 layout_mode = 2
 player_index = 1
 
-[node name="WinScreen" parent="." instance=ExtResource("4_sqa0i")]
+[node name="WinScreen" parent="." node_paths=PackedStringArray("score_meters", "gameplay_root") instance=ExtResource("4_sqa0i")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+score_meters = [NodePath("../HBox/Player1ScoreBar"), NodePath("../HBox/Player2ScoreBar")]
+gameplay_root = NodePath("../HBox")

@@ -1,3 +1,4 @@
+class_name PlayerScoreMeter
 extends Control
 
 enum TargetPitch { NONE, LOW, HIGH }
@@ -22,6 +23,9 @@ var target_stretch_ratio: float
 
 var full_height: float = 0
 var fill_amount: float = 0
+
+var is_full: bool: get = _get_is_full
+var is_empty: bool: get = _get_is_empty
 
 
 func _ready():
@@ -88,3 +92,10 @@ func _update_prompt_texture():
         HIGH: prompt_texture = high_pitch_prompt_texture
     for texture_rect in prompt_display_nodes:
         texture_rect.texture = prompt_texture
+
+
+func _get_is_full() -> bool:
+    return fill_amount == fill_threshold
+
+func _get_is_empty() -> bool:
+    return fill_amount == 0
