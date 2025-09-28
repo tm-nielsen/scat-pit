@@ -64,6 +64,8 @@ func _update_dynamic_display_frequency():
     )
 
 func _set_display_frequency_from_target(target_pitch):
+    if target_pitch == PitchTargetTracker.LOW:
+        get_parent().move_child(self, 0)
     dynamic_frequency_enabled = false
     var frequency := lerpf(minimum_frequency, maximum_frequency, 0.5)
     match target_pitch:
