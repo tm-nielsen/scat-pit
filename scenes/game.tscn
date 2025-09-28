@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctmomsylv2o63"]
+[gd_scene load_steps=19 format=3 uid="uid://ctmomsylv2o63"]
 
 [ext_resource type="PackedScene" uid="uid://dqonm1a1hn3mq" path="res://scenes/prefabs/wave_circle.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://6lxf60xqjeix" path="res://scenes/prefabs/monkey.tscn" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://c5fs3ofkyradx" path="res://scripts/audio/sfx_player.gd" id="3_lnu2h"]
+[ext_resource type="AudioStream" uid="uid://d3roqib1pm6a1" path="res://audio/SFX/Bounces/BoingLayer/SFXScatPitBoing_001.ogg" id="4_ssvqc"]
+[ext_resource type="AudioStream" uid="uid://owodt6qxn8ed" path="res://audio/SFX/Bounces/BoingLayer/SFXScatPitBoing_002.ogg" id="5_264po"]
+[ext_resource type="AudioStream" uid="uid://gfwxse53wbkx" path="res://audio/SFX/Bounces/BoingLayer/SFXScatPitBoing_003.ogg" id="6_1kice"]
+[ext_resource type="AudioStream" uid="uid://edyp1f0y1anl" path="res://audio/SFX/Bounces/NoiseLayer/SFXScatPitBounceNoise_001.ogg" id="7_5newe"]
+[ext_resource type="AudioStream" uid="uid://bgtf5h4668dl" path="res://audio/SFX/Bounces/NoiseLayer/SFXScatPitBounceNoise_002.ogg" id="8_37s47"]
+[ext_resource type="AudioStream" uid="uid://dum3hl3ngbdmr" path="res://audio/SFX/Bounces/NoiseLayer/SFXScatPitBounceNoise_003.ogg" id="9_bt5mj"]
+[ext_resource type="AudioStream" uid="uid://c7vyr6868ya26" path="res://audio/SFX/Punches/ThrowLayer/SFXScatPitPunchThrow_001.ogg" id="10_e1j6l"]
+[ext_resource type="AudioStream" uid="uid://bbponnv5wbyhn" path="res://audio/SFX/Punches/ThrowLayer/SFXScatPitPunchThrow_002.ogg" id="11_pl11u"]
+[ext_resource type="AudioStream" uid="uid://d3vihknrljv4o" path="res://audio/SFX/Punches/ThrowLayer/SFXScatPitPunchThrow_003.ogg" id="12_bhx41"]
+[ext_resource type="AudioStream" uid="uid://d2hb5tumgo1hl" path="res://audio/SFX/Punches/ImpactLayers/OuchLayer/SFXScatPitPunchOuch_001.ogg" id="13_qnb83"]
+[ext_resource type="AudioStream" uid="uid://bv6po64iqfqnw" path="res://audio/SFX/Punches/ImpactLayers/OuchLayer/SFXScatPitPunchOuch_002.ogg" id="14_sww3w"]
+[ext_resource type="AudioStream" uid="uid://cbi62j3vrni07" path="res://audio/SFX/Punches/ImpactLayers/OuchLayer/SFXScatPitPunchOuch_003.ogg" id="15_suyxu"]
+[ext_resource type="AudioStream" uid="uid://bqm3mp6anfu8k" path="res://audio/SFX/Punches/ImpactLayers/SmashLayer/SFXScatPitPunchSmash_001.ogg" id="16_sgl2t"]
+[ext_resource type="AudioStream" uid="uid://1glfh8l5o76q" path="res://audio/SFX/Punches/ImpactLayers/SmashLayer/SFXScatPitPunchSmash_002.ogg" id="17_qouja"]
+[ext_resource type="AudioStream" uid="uid://8erkkb2dmpw2" path="res://audio/SFX/Punches/ImpactLayers/SmashLayer/SFXScatPitPunchSmash_003.ogg" id="18_wljb1"]
 
 [node name="Game" type="Node2D"]
 
@@ -33,3 +48,8 @@ face_toward = NodePath("../Monkey")
 
 [node name="SFX" type="Node" parent="."]
 script = ExtResource("3_lnu2h")
+bounce_boing_clips = Array[AudioStream]([ExtResource("4_ssvqc"), ExtResource("5_264po"), ExtResource("6_1kice")])
+bounce_noise_clips = Array[AudioStream]([ExtResource("7_5newe"), ExtResource("8_37s47"), ExtResource("9_bt5mj")])
+punch_thrown_clips = Array[AudioStream]([ExtResource("10_e1j6l"), ExtResource("11_pl11u"), ExtResource("12_bhx41")])
+punch_landed_ouch_clips = Array[AudioStream]([ExtResource("13_qnb83"), ExtResource("14_sww3w"), ExtResource("15_suyxu")])
+punch_landed_smash_clips = Array[AudioStream]([ExtResource("16_sgl2t"), ExtResource("17_qouja"), ExtResource("18_wljb1")])
