@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Skat Bop"
+config/name="Scat Pit"
 run/main_scene="uid://b2c7qvsff3owx"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
