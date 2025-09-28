@@ -1,6 +1,7 @@
 extends Control
 
 @export var score_meters: Array[PlayerScoreMeter]
+@export var win_sound_player: AudioStreamPlayer
 @export var gameplay_root: Node
 @export var monkey_colour_node: Node2D
 @export var animator: AnimationPlayer
@@ -34,6 +35,7 @@ func trigger(player_index: int):
     TweenHelpers.call_delayed(
         self, enable_replay, replay_delay
     )
+    win_sound_player.play()
 
 func enable_replay():
     replay_enabled = true
