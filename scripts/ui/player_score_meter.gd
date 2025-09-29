@@ -7,6 +7,7 @@ extends Control
 
 @export var fill: ColorRect
 @export var fill_threshold: float = 500
+@export var fill_acceleration_slowdown: float = 20
 
 @export_subgroup("prompt labels")
 @export var low_pitch_prompt_texture: Texture2D
@@ -22,6 +23,8 @@ var fill_amount: float = 0
 var is_full: bool: get = _get_is_full
 var is_empty: bool: get = _get_is_empty
 
+var game_timer: float = 0
+
 
 func _ready():
     pitch_target_tracker = PitchTargetTracker.new(player_index)
@@ -30,7 +33,8 @@ func _ready():
     _initialize_fill.call_deferred()
     _update_prompt_texture(PitchTargetTracker.NONE)
 
-func _process(_delta):
+func _process(delta):
+    game_timer += delta
     var target_range_weight = pitch_target_tracker.target_weight
     _add_fill(target_range_weight)
     _update_target_stretch_ratio(target_range_weight)
@@ -45,6 +49,11 @@ func _initialize_fill():
     fill.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 
 func _add_fill(amount: float):
+    var t := game_timer / fill_acceleration_slowdown
+    fill_amount = clampf(
+        fill_amount + amount * (1 + t * t),
+        0, fill_threshold
+    )
     fill_amount = clampf(
         fill_amount + amount,
         0, fill_threshold
