@@ -22,9 +22,14 @@ mono_crash.*.json
 # Build results
 [Dd]ebug/
 [Rr]elease/
-[Bb]uilds/
+[Bb]uilds/*/*
 
 *.kra~
 *.png~
 
 settings.ini
+
+![Bb]uilds/*/config.ini
+![Bb]uilds/*/description.txt
+![Bb]uilds/*/*cover.png
+![Bb]uilds/*/settings.ini
