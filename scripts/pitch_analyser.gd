@@ -3,17 +3,6 @@ extends Node
 @export var input_bus_name := "Input"
 @export var spectrum_analyser_effect_index: int = 1
 
-@export_subgroup("parameters")
-@export_range(0, 1) var high_harmonic_culling_factor: float = 0.5
-@export_subgroup("parameters/low range", "low_range")
-@export var low_range_normalizing_factor: float = 10
-@export var low_range_minimum_frequency: float = 100
-@export var low_range_maximum_frequency: float = 300
-@export_subgroup("parameters/high range", "high_range")
-@export var high_range_normalizing_factor: float = 20
-@export var high_range_minimum_frequency: float = 300
-@export var high_range_maximum_frequency: float = 600
-
 var spectrum_analyser: AudioEffectSpectrumAnalyzerInstance
 
 var low_range_magnitude: Vector2
@@ -34,23 +23,15 @@ func _ready() -> void:
     )
 
 func _process(_delta: float) -> void:
-    low_range_magnitude = get_range(
-        spectrum_analyser,
-        low_range_minimum_frequency,
-        low_range_maximum_frequency
-    )
-    high_range_magnitude = get_range(
-        spectrum_analyser,
-        high_range_minimum_frequency,
-        high_range_maximum_frequency
-    )
+    low_range_magnitude = Settings.low_frequency_range.get_range(spectrum_analyser)
+    high_range_magnitude = Settings.high_frequency_range.get_range(spectrum_analyser)
 
     # account for low range resonance
-    high_range_magnitude -= low_range_magnitude * high_harmonic_culling_factor
+    high_range_magnitude -= low_range_magnitude * Settings.harmonic_compensation_ratio
     high_range_magnitude = high_range_magnitude.clampf(0, INF)
 
-    low_range_magnitude *= low_range_normalizing_factor
-    high_range_magnitude *= high_range_normalizing_factor
+    low_range_magnitude *= Settings.low_range_sensitivity * Settings.master_sensitivity
+    high_range_magnitude *= Settings.high_range_sensitivity * Settings.master_sensitivity
 
     total_magnitude = low_range_magnitude + high_range_magnitude
     average_magnitude = (total_magnitude.x + total_magnitude.y) / 2
@@ -73,13 +54,3 @@ func get_ratio(band: Vector2, total: Vector2) -> Vector2:
 
 func safe_remap(a: float, b: float) -> float:
     return 0.5 if b == 0 else remap(a, 0, b, 0, 1)
-
-
-func get_range(
-    analyser: AudioEffectSpectrumAnalyzerInstance,
-    range_min: float, range_max: float
-) -> Vector2:
-    return analyser.get_magnitude_for_frequency_range(
-        range_min, range_max,
-        AudioEffectSpectrumAnalyzerInstance.MAGNITUDE_AVERAGE
-    )
